@@ -119,7 +119,6 @@ const promptUser = () => {
     },
     ])
     .then(answers => {
-        console.log(answers.roleSelection);
         if(answers.roleSelection == 'Manager'){
             employeeArr.push(new Manager(answers.name, answers.id, answers.email, 'Manager', answers.officeNumber));
             console.log(employeeArr)
@@ -149,26 +148,26 @@ const addUser = () => {
             return promptUser();
         } else {
             console.log('Bye')
+
+            writeFile();
         }
     })
 };
 
 promptUser()
-
-//   .then(promptTeamMemberInfo)
-//   .then(portfolioData => {
-//     return generatePage(portfolioData);
-//   })
-//   .then(pageHTML => {
-//     return writeFile(pageHTML);
-//   })
-//   .then(writeFileResponse => {
-//     console.log(writeFileResponse);
-//     return copyFile();
-//   })
-//   .then(copyFileResponse => {
-//     console.log(copyFileResponse);
-//   })
-//   .catch(err => {
-//     console.log(err);
-//   });
+  .then(answers => {
+    return generatePage(answers);
+  })
+  .then(pageHTML => {
+    return writeFile(pageHTML);
+  })
+  .then(writeFileResponse => {
+    console.log(writeFileResponse);
+    return copyFile();
+  })
+  .then(copyFileResponse => {
+    console.log(copyFileResponse);
+  })
+  .catch(err => {
+    console.log(err);
+  });
