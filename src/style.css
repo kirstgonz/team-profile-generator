@@ -1,5 +1,5 @@
 *{
-    margin: 2%;
+    margin: 1%;
     background-color: ivory;
     color: darkblue
 }
@@ -8,3 +8,7 @@ h3 {
     font-weight: bold;
 }
 
+header {
+    background-color: darkolivegreen;
+    color: black;
+}

@@ -14,7 +14,10 @@ const writeFile = fileContent => {
         message: 'File created!'
       });
     });
-  });
+  })
+  .then ( () => {
+    copyFile();
+  })
 };
 
 // copying file

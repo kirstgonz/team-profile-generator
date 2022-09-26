@@ -12,6 +12,6 @@ test('makes an Engineer object', () => {
 test('checks employee methods functionality', () => {
     const engineer = new Engineer ('Ian', '2', 'idd@yahoo.com', 'Engineer', 'iansnods')
 
-    expect(engineer.getGithub()).toMatch('iansnods');
+    expect(engineer.getGitHub()).toMatch('iansnods');
     expect(engineer.getRole()).toMatch('Engineer');
 });

@@ -1,37 +1,44 @@
-// create the about section
-const generateTeamMember = answers => {
+// create the 
+const generateTeamMember = (employeeArr, index) => {
     return `
       <div id="employeeBasic">
-        <h3>${answers.name}</h3>
-        <h4> ID: ${answers.id}</h4>
-        <h4><a href="mailto: ${answers.email}?subject= Questions">${answers.email}</a></h4>
-        <h4>Role: ${answers.roleSelection}</h4>
+        <h3>${employeeArr[index].getName()}</h3>
+        <h4><b>ID:</b> ${employeeArr[index].getId()}</h4>
+        <h4><b>Email:</b> <a href="mailto: ${employeeArr[index].getEmail()}?subject= Questions">${employeeArr[index].getEmail()}</a></h4>
+        <h4><b>Role:</b> ${employeeArr[index].getRole()}</h4>
     `;
   };
   
-  const generateTeamMemberRole = roleSelection => {
-    if (roleSelection == 'Manager') {
+  const generateTeamMemberRole = (employeeArr, index) => {
+    if (employeeArr[index].getRole() == 'Manager') {
       return `
-      <h4>Office Number: ${roleSelection.officeNumber}</h4>
+      <h4><b>Office Number:</b> ${employeeArr[index].getOfficeNumber()}</h4>
       `;
     } 
-    else if (roleSelection == 'Engineer'){
+    else if (employeeArr[index].getRole() == 'Engineer'){
       return `
-      <h4>GitHub: <a href="https://github.com/${roleSelection.github}"</a>${roleSelection.github}</h4>
+      <h4><b>GitHub:</b> <a href="https://github.com/${employeeArr[index].getGitHub()}"></a>${employeeArr[index].getGitHub()}</h4>
       `;
     }
-    else if (roleSelection == 'Intern') {
+    else if (employeeArr[index].getRole() == 'Intern') {
       return `
-      <h4>School: ${roleSelection.school}</h4>
+      <h4><b>School:</b> ${employeeArr[index].getSchool()}</h4>
       `;
     }
     console.log('Oops! Something went wrong.')
   }
  
   // export function to generate entire page
-  module.exports = templateData => {
-    let teamMember = generateTeamMember(answers.answers);
-    let teamMemberRole = generateTeamMemberRole(roleSelection.answers);
+  module.exports = employeeArr => {
+    let teamMember = '';
+
+    for (let i = 0; i < employeeArr.length; i++) {
+      teamMember += generateTeamMember(employeeArr, i);
+      teamMember += generateTeamMemberRole(employeeArr, i);
+      teamMember += `
+        <p>=========================</p>
+      `
+    }
 
     return `
     <!DOCTYPE html>
@@ -53,8 +60,8 @@ const generateTeamMember = answers => {
       </header>
       <main class="container my-5">
         ${teamMember}
-        ${teamMemberRole}
       </main>
+      
       <footer class="container text-center py-3">
         <h3 class="text-dark">&copy;2020</h3>
       </footer>

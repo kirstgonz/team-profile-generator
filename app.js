@@ -147,27 +147,11 @@ const addUser = () => {
         if(answers.confirmAddUser){
             return promptUser();
         } else {
-            console.log('Bye')
+            console.log('Goodbye! Generating HTML now :)')
 
-            writeFile();
+            return writeFile(generatePage(employeeArr));
         }
     })
 };
 
-promptUser()
-  .then(answers => {
-    return generatePage(answers);
-  })
-  .then(pageHTML => {
-    return writeFile(pageHTML);
-  })
-  .then(writeFileResponse => {
-    console.log(writeFileResponse);
-    return copyFile();
-  })
-  .then(copyFileResponse => {
-    console.log(copyFileResponse);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+promptUser();
